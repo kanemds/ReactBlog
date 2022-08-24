@@ -4,11 +4,11 @@ import Navbar from './component/Navbar';
 import Home from './component/Home';
 import Create from "./component/Create";
 import BlogDetails from "./component/BlogDetails";
-
+import './index.css';
 
 function App() {
   return (
-    <Router>
+    <Router >
       <div className="App">
 
         <Navbar />

@@ -2,20 +2,20 @@
   "blogs": [
     {
       "title": "MonsterHunter",
-      "body": "MonsterHunter",
-      "author": "aaa",
+      "body": "Monster Hunter (モンスターハンター, Monsutā Hantā) is a Japanese media franchise centered around a series of fantasy-themed action role-playing video games that started with the game Monster Hunter for PlayStation 2, released in 2004. Titles have been released across a variety of platforms, including personal computers, home consoles, portable consoles, and mobile devices. The series is developed and published by Capcom.",
+      "author": "wiki",
       "id": 1
     },
     {
       "title": "Inital D",
-      "body": "Inital D",
-      "author": "bbb",
+      "body": "Initial D (Japanese: 頭文字イニシャル D, Hepburn: Inisharu Dī) is a Japanese street racing manga series written and illustrated by Shuichi Shigeno. It was serialized in Kodansha's seinen manga magazine Weekly Young Magazine from 1995 to 2013, with the chapters collected into 48 tankōbon volumes. The story focuses on the world of illegal Japanese street racing, where all the action is concentrated in the mountain passes and rarely in cities or urban areas, and with the drifting racing style emphasized in particular. Professional race car driver and pioneer of drifting Keiichi Tsuchiya helped with editorial supervision. The story is centered on the prefecture of Gunma, more specifically on several mountains in the Kantō region and in their surrounding cities and towns. Although some of the names of the locations the characters race in have been fictionalized, all of the locations in the series are based on actual locations in Japan.",
+      "author": "wiki",
       "id": 2
     },
     {
       "title": "Sword Art Online",
-      "body": "Sword Art Online",
-      "author": "aaa",
+      "body": "Sword Art Online (Japanese: ソードアート・オンライン, Hepburn: Sōdo Āto Onrain) is a Japanese light novel series written by Reki Kawahara and illustrated by abec. The series takes place in the near future and focuses on protagonists Kazuto \"Kirito\" Kirigaya and Asuna Yuuki as they play through various virtual reality MMORPG worlds. Kawahara originally wrote the series as a web novel on his website from 2002 to 2008. The light novels began publication on ASCII Media Works' Dengeki Bunko imprint from April 10, 2009, with a spin-off series launching in October 2012. The series has spawned twelve manga adaptations published by ASCII Media Works and Kadokawa. The novels and the manga adaptations have been licensed for release in North America by Yen Press.",
+      "author": "wiki",
       "id": 3
     }
   ]

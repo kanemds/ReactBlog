@@ -1,9 +1,14 @@
 * {
   margin: 0;
   color: rgb(93, 87, 87);
-  background-color: rgb(244, 239, 234);
-
 }
+
+.App {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(230, 226, 224);
+}
+
 
 .navbar {
   padding: 20px;
@@ -39,20 +44,11 @@
 }
 
 .blog-preview {
-  padding: 10px 16px;
-  margin: 20px 0;
   border-bottom: 1px solid rgba(146, 144, 144, 0.804);
 }
 
-.blog-preview:hover {
-  box-shadow: 1px 3px 5px rgba(146, 144, 144, 0.804);
-}
 
-.blog-preview h2 {
-  font-size: 20px;
-  color: brown;
-  margin-bottom: 8px;
-}
+
 
 .blog-preview a {
   text-decoration: none;

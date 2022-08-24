@@ -10,7 +10,7 @@ const BlogList = ({ blogs, title, handleDelete }) => {
 
   return (
     <div className='blog-list'>
-      <h2>{title}</h2>
+      <Typography variant="h5" >{title}</Typography>
       {blogs.map((blog) => (
         <div className="blog-preview" key={blog.id}>
           <Typography variant="h5" >{blog.title}</Typography>

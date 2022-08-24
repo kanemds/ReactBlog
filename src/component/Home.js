@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react'
 import BlogList from './BlogList'
 import { Typography } from '@mui/material'
 import useFetch from '../hooks/useFetch'

@@ -7,8 +7,6 @@ const Home = () => {
 
   const { data: blogs, isPending, error } = useFetch('http://localhost:8000/blogs')
 
-  console.log(blogs)
-
   return (
     <div className='home'>
       {/* the inital blogs is null, it's error due to the mapping on BlogList

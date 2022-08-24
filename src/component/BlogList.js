@@ -3,7 +3,7 @@ import React from 'react'
 import { Typography } from '@mui/material'
 import { Box } from '@mui/material'
 
-const BlogList = ({ blogs, title, handleDelete }) => {
+const BlogList = ({ blogs, title }) => {
 
 
 
@@ -14,10 +14,8 @@ const BlogList = ({ blogs, title, handleDelete }) => {
       {blogs.map((blog) => (
         <div className="blog-preview" key={blog.id}>
           <Typography variant="h5" >{blog.title}</Typography>
-          <Typography variant="h8"> {blog.author}</Typography>
-          <Box>
-            <Button variant='contained' sx={{ m: 2 }} onClick={() => handleDelete(blog.id)}>Delete Blog</Button>
-          </Box>
+          <Typography variant="h8">Written by {blog.author}</Typography>
+
         </div>
       ))}
     </div>

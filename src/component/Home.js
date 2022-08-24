@@ -3,25 +3,25 @@ import BlogList from './BlogList'
 
 const Home = () => {
 
-  const [blogs, setBlogs] = useState([
-    { title: "DarkSoul", body: "DarkSoul", author: "a", id: 1 },
-    { title: "EldenRing", body: "EldenRing", author: "b", id: 2 },
-    { title: "FF14", body: "FF14", author: "a", id: 3 }
-  ])
+  const [blogs, setBlogs] = useState(null)
 
-  const handleDelete = (id) => {
-    // filter retrun new array
-    const newBlogs = blogs.filter(blog => blog.id !== id)
-    setBlogs(newBlogs)
-  }
+
 
   useEffect(() => {
-
-  })
+    fetch('http://localhost:8000/blogs')
+      .then(res => {
+        return res.json()
+      })
+      .then((data) => {
+        setBlogs(data)
+      })
+  }, [])
 
   return (
     <div className='home'>
-      <BlogList blogs={blogs} title="All Blogs" handleDelete={handleDelete} />
+      {/* the inital blogs is null, it's error due to the mapping on BlogList
+       by doing blogs &&, it first make sure blogs exist then run the right */}
+      {blogs && <BlogList blogs={blogs} title="All Blogs" />}
 
 
 

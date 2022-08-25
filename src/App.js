@@ -8,21 +8,19 @@ import './index.css';
 
 function App() {
   return (
-    <Router >
-      <div className="App">
-
+    <div className="App">
+      <Router >
         <Navbar />
         <div className='content'>
           <Routes>
-
             <Route path="/create" element={<Create />} />
             <Route path="/blogs/:id" element={<BlogDetails />} />
             <Route path="/" element={<Home />} />
-
           </Routes>
         </div>
-      </div>
-    </Router>
+      </Router >
+    </div>
+
   );
 }
 

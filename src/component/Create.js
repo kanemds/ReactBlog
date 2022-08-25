@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Paper, Typography, TextField, TextareaAutosize, Select, MenuItem, FormControl, Button, InputLabel } from '@mui/material'
+import { grey } from '@mui/material/colors'
 
 
 const Create = () => {
@@ -7,6 +8,23 @@ const Create = () => {
   const [title, setTitle] = useState("")
   const [body, setBody] = useState("")
   const [author, setAuthor] = useState("")
+  const [isPending, setIsPending] = useState(false)
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const blog = { title, body, author }
+
+    setIsPending(true)
+
+    fetch('http://localhost:8000/blogs', {
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(blog)
+    }).then(() => {
+      console.log('new blog added')
+      setIsPending(false)
+    })
+  }
 
 
   return (
@@ -23,12 +41,14 @@ const Create = () => {
             required
             placeholder="What would you like to share today"
             value={body}
+            style={{ maxWidth: 545 }}
             onChange={(e) => setBody(e.target.value)}
           >
           </TextareaAutosize >
-          <FormControl sx={{ mt: 3, mb: 1 }} size="small">
+          <FormControl sx={{ mt: 3, mb: 1, color: grey }} size="small">
             <InputLabel sx={{
-              fontSize: 12
+              fontSize: 14,
+              color: grey
             }} id="demo-simple-select-standard-label">Select Author</InputLabel>
             <Select
               required
@@ -36,26 +56,25 @@ const Create = () => {
               id="demo-simple-select-standard"
               value={author}
               sx={{
-                maxWidth: 120,
                 '& .MuiInputBase-input': {
-                  fontSize: 12
-                }
+                  fontSize: 14
+                },
+                color: grey
               }}
               label="Select Author"
               onChange={(e) => setAuthor(e.target.value)}
             >
-              <MenuItem value={"wiki"}>wiki</MenuItem>
+              <MenuItem sx={{ color: grey }} value={"wiki"}>wiki</MenuItem>
               <MenuItem value={"google"}>google</MenuItem>
             </Select>
           </FormControl>
-          <Button>Create</Button>
+
         </FormControl>
+        <Button>Back</Button>
+        {!isPending ? <Button onClick={handleSubmit}>Create</Button> : <Button>Adding...</Button>}
 
       </Paper>
-      <p>{title}</p>
-      <p>{body}</p>
-      <p>{author}</p>
-    </div>
+    </div >
   )
 }
 

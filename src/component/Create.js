@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Paper, Typography, TextField, TextareaAutosize, Select, MenuItem, FormControl, Button, InputLabel } from '@mui/material'
 import { grey } from '@mui/material/colors'
-
+import { useNavigate } from 'react-router-dom'
 
 const Create = () => {
 
@@ -9,6 +9,7 @@ const Create = () => {
   const [body, setBody] = useState("")
   const [author, setAuthor] = useState("")
   const [isPending, setIsPending] = useState(false)
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -23,6 +24,7 @@ const Create = () => {
     }).then(() => {
       console.log('new blog added')
       setIsPending(false)
+      navigate('/')
     })
   }
 
@@ -70,7 +72,7 @@ const Create = () => {
           </FormControl>
 
         </FormControl>
-        <Button>Back</Button>
+        <Button onClick={() => navigate('/')}>Back</Button>
         {!isPending ? <Button onClick={handleSubmit}>Create</Button> : <Button>Adding...</Button>}
 
       </Paper>

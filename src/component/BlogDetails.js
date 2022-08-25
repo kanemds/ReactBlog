@@ -1,13 +1,23 @@
 import React from 'react'
-import { Paper, Typography } from '@mui/material'
+import { Paper, Typography, Button } from '@mui/material'
 import { useParams } from 'react-router-dom'
 import useFetch from '../hooks/useFetch'
 import { Box } from '@mui/system'
+import { useNavigate } from 'react-router-dom'
 
 const BlogDetails = () => {
 
   const { id } = useParams()
   const { data: blog, error, isPending } = useFetch('http://localhost:8000/blogs/' + id)
+  const navigate = useNavigate()
+
+  const hanldeDelete = () => {
+    fetch(`http://localhost:8000/blogs/${id}`, {
+      method: 'DELETE'
+    }).then(() => {
+      navigate('/')
+    })
+  }
 
   return (
     <div >
@@ -21,6 +31,7 @@ const BlogDetails = () => {
           <Typography variant="h4">{blog.title}</Typography>
           <Typography sx={{ m: 1 }}>Writen by {blog.author}</Typography>
           <Typography >{blog.body}</Typography>
+          <Button onClick={hanldeDelete}>Delete</Button>
         </Paper>
 
       )

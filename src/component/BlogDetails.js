@@ -2,7 +2,6 @@ import React from 'react'
 import { Paper, Typography, Button } from '@mui/material'
 import { useParams } from 'react-router-dom'
 import useFetch from '../hooks/useFetch'
-import { Box } from '@mui/system'
 import { useNavigate } from 'react-router-dom'
 
 const BlogDetails = () => {
@@ -33,7 +32,6 @@ const BlogDetails = () => {
           <Typography >{blog.body}</Typography>
           <Button onClick={hanldeDelete}>Delete</Button>
         </Paper>
-
       )
       }
 

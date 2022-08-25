@@ -27,8 +27,6 @@ const BlogList = ({ blogs, title }) => {
               <Typography variant="h8">Written by {blog.author}</Typography>
             </Link>
           </Paper>
-
-
         </div>
       ))}
     </div>

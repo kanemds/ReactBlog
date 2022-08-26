@@ -1,7 +1,7 @@
 {
   "blogs": [
     {
-      "title": "MonsterHunter",
+      "title": "Monster Hunter",
       "body": "Monster Hunter (モンスターハンター, Monsutā Hantā) is a Japanese media franchise centered around a series of fantasy-themed action role-playing video games that started with the game Monster Hunter for PlayStation 2, released in 2004. Titles have been released across a variety of platforms, including personal computers, home consoles, portable consoles, and mobile devices. The series is developed and published by Capcom.",
       "author": "wiki",
       "id": 1
@@ -17,6 +17,12 @@
       "body": "Sword Art Online (Japanese: ソードアート・オンライン, Hepburn: Sōdo Āto Onrain) is a Japanese light novel series written by Reki Kawahara and illustrated by abec. The series takes place in the near future and focuses on protagonists Kazuto \"Kirito\" Kirigaya and Asuna Yuuki as they play through various virtual reality MMORPG worlds. Kawahara originally wrote the series as a web novel on his website from 2002 to 2008. The light novels began publication on ASCII Media Works' Dengeki Bunko imprint from April 10, 2009, with a spin-off series launching in October 2012. The series has spawned twelve manga adaptations published by ASCII Media Works and Kadokawa. The novels and the manga adaptations have been licensed for release in North America by Yen Press.",
       "author": "wiki",
       "id": 3
+    },
+    {
+      "title": "Elden Ring",
+      "body": "Elden Ring[a] is a 2022 action role-playing game developed by FromSoftware and published by Bandai Namco Entertainment. It was directed by Hidetaka Miyazaki with worldbuilding provided by the fantasy writer George R. R. Martin. It was released for PlayStation 4, PlayStation 5, Windows, Xbox One, and Xbox Series X/S on February 25.",
+      "author": "google",
+      "id": 4
     }
   ]
 }

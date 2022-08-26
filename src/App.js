@@ -6,23 +6,29 @@ import Create from "./component/Create";
 import BlogDetails from "./component/BlogDetails";
 import './index.css';
 import NotFound from "./component/NotFound";
+import { DataProvider } from './context/DataContext'
+import Edit from "./component/Edit";
+
+
 
 function App() {
   return (
     <div className="App">
-      <Router >
-        <Navbar />
-        <div className='content'>
-          <Routes>
-            <Route path="/create" element={<Create />} />
-            <Route path="/blogs/:id" element={<BlogDetails />} />
-            <Route path="/" element={<Home />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </div>
-      </Router >
+      <DataProvider>
+        <Router >
+          <Navbar />
+          <div className='content'>
+            <Routes>
+              <Route path="/create" element={<Create />} />
+              <Route path="/edit/:id" element={<Edit />} />
+              <Route path="/blogs/:id" element={<BlogDetails />} />
+              <Route path="/" element={<Home />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </div>
+        </Router >
+      </DataProvider>
     </div>
-
   );
 }
 

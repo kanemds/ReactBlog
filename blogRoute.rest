@@ -1,0 +1,43 @@
+GET http://localhost:3001/blog
+
+###
+
+
+GET http://localhost:3001/blog/6309231f94c9abb84079d2cc
+
+###
+
+POST http://localhost:3001/blog
+Content-Type: application/json
+
+{
+  "title": "test",
+  "body": "test",
+  "author": "test"
+}
+
+###
+DELETE  http://localhost:3001/blog/6309231f94c9abb84079d2caasdfda
+
+###
+DELETE  http://localhost:3001/blog/63092364a64f66305b39025f
+
+###
+PATCH   http://localhost:3001/blog/63092331a64f66305b390256
+Content-Type: application/json
+
+{
+  "title":"name changed"
+}
+
+###
+DELETE  http://localhost:3001/blog/6309231f94c9abb84079d2caasdfda
+
+###
+PATCH   http://localhost:3001/blog/63092362a64f66305b390259
+Content-Type: application/json
+
+{
+  "title":"new title",
+  "body": "what would you like to share today?"
+}

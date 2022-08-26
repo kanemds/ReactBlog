@@ -1,0 +1,17 @@
+GET http://localhost:3001/blog
+
+###
+
+
+GET http://localhost:3001/blog/13
+
+###
+
+POST http://localhost:3001/blog
+Content-Type: application/json
+
+{
+  "title": "test",
+  "body": "test",
+  "author": "test"
+}

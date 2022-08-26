@@ -1,5 +1,7 @@
 const express = require('express')
 const router = express.Router()
+
+
 const blog = require('./blog')
 const user = require('./user')
 

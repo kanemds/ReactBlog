@@ -1,0 +1,31 @@
+POST http://localhost:3001/user
+Content-Type: application/json
+
+{
+  "firstName": "k",
+  "lastName":"y",
+  "userName":"k",
+  "password":"abc",
+  "email": "abc@abc.com"
+}
+
+
+### get all
+GET http://localhost:3001/user
+
+
+### get one
+GET http://localhost:3001/user/630942cb3d2fa7b0bf1e1427
+
+### update
+POST http://localhost:3001/user/630942cb3d2fa7b0bf1e1427
+Content-Type: application/json
+
+{
+  "firstName": "bbb",
+  "lastName":"mmm",
+  "password":"defg"
+}
+
+### delete
+DELETE http://localhost:3001/user/630942cc3d2fa7b0bf1e142b

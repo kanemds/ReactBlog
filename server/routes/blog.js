@@ -45,23 +45,30 @@ router.post('/', async (req, res) => {
 })
 
 
-router.patch('/:id', getBlog, async (req, res) => {
-  if (req.body.title != null) {
-    res.blog.title = req.body.title
+router.post('/:id', async (req, res) => {
+  const newDoc = req.body;
+  for (let prop in newDoc) {
+    if (!newDoc[prop]) {
+      delete newDoc[prop];
+      //it will remove fields who are undefined or null
+    }
   }
-  if (req.body.body != null) {
-    res.blog.body = req.body.body
-  }
-  if (req.body.author != null) {
-    res.blog.author = req.body.author
-  }
-  try {
-    const updatedBlog = await res.blog.save()
-    res.json(updatedBlog)
-  } catch (error) {
-    res.status(400).json(error.message)
-  }
-
+  Blog.findOneAndUpdate(
+    {
+      _id: req.params.id,
+    },
+    newDoc,
+    {
+      // return doc after update is applied
+      new: true,
+      upsert: true,
+    }
+  )
+    .exec()
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((error) => res.status(400).json(error.message));
 })
 
 router.delete('/:id', async (req, res) => {
@@ -76,7 +83,6 @@ router.delete('/:id', async (req, res) => {
     return res.status(500).json(error.message)
   }
 })
-
 
 
 

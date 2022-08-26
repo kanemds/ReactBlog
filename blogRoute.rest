@@ -23,11 +23,11 @@ DELETE  http://localhost:3001/blog/6309231f94c9abb84079d2caasdfda
 DELETE  http://localhost:3001/blog/63092364a64f66305b39025f
 
 ###
-PATCH   http://localhost:3001/blog/63092331a64f66305b390256
+POST   http://localhost:3001/blog/63092331a64f66305b390256
 Content-Type: application/json
 
 {
-  "title":"name changed"
+  "title":"name changed 3 times"
 }
 
 ###

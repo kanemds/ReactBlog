@@ -8,7 +8,8 @@ import Edit from './Edit'
 const BlogDetails = () => {
 
   const { id } = useParams()
-  const { data: blog, error, isPending } = useFetch('http://localhost:8000/blogs/' + id)
+
+  const { data: blog, error, isPending } = useFetch('http://localhost:3001/blogs/' + id)
   const navigate = useNavigate()
 
 

@@ -6,14 +6,11 @@ import { Link } from 'react-router-dom'
 
 const BlogList = ({ blogs, title }) => {
 
-
-
-
   return (
     <div className='blog-list'>
       <Typography variant="h5" >{title}</Typography>
       {blogs.map((blog) => (
-        <div className="blog-preview" key={blog.id}>
+        <div className="blog-preview" key={blog._id}>
           <Paper sx={{
             p: 3,
             m: 3,
@@ -22,7 +19,7 @@ const BlogList = ({ blogs, title }) => {
               cursor: "pointer",
             }
           }}>
-            <Link to={`/blogs/${blog.id}`}>
+            <Link to={`/blogs/${blog._id}`}>
               <Typography variant="h5" >{blog.title}</Typography>
               <Typography variant="h8">Written by {blog.author}</Typography>
             </Link>

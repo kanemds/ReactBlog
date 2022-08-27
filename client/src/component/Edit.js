@@ -9,7 +9,7 @@ const Edit = () => {
   const { id } = useParams()
   const navigate = useNavigate()
 
-  const { data: blog, error } = useFetch('http://localhost:8000/blogs/' + id)
+  const { data: blog, error } = useFetch('http://localhost:3001/blogs/' + id)
   const [isPending, setIsPending] = useState(false)
   const [post, setPost] = useState()
 
@@ -27,7 +27,7 @@ const Edit = () => {
   const handleUpdate = () => {
     setIsPending(true)
 
-    fetch(`http://localhost:8000/blogs/${id}`, {
+    fetch(`http://localhost:3001/blogs/${id}`, {
       method: 'PUT',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(post)
@@ -39,7 +39,7 @@ const Edit = () => {
   }
 
   const hanldeDelete = () => {
-    fetch(`http://localhost:8000/blogs/${id}`, {
+    fetch(`http://localhost:3001/blogs/${id}`, {
       method: 'DELETE'
     }).then(() => {
       navigate('/')

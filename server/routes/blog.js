@@ -53,10 +53,12 @@ router.post('/:id', async (req, res) => {
       //it will remove fields who are undefined or null
     }
   }
-  Blog.findOneAndUpdate(
+
+  User.findOneAndUpdate(
     {
       _id: req.params.id,
     },
+
     newDoc,
     {
       // return doc after update is applied
@@ -69,6 +71,7 @@ router.post('/:id', async (req, res) => {
       res.json(data);
     })
     .catch((error) => res.status(400).json(error.message));
+
 })
 
 router.delete('/:id', async (req, res) => {

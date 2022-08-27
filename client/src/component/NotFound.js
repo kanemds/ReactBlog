@@ -1,8 +1,9 @@
 import React from 'react'
 import { Paper, Button, Typography } from '@mui/material'
-import { Navigate } from 'react-router-dom'
-
+import { useNavigate } from 'react-router-dom'
 const NotFound = () => {
+  const navigate = useNavigate()
+
   return (
     <Paper
       sx={{
@@ -15,7 +16,7 @@ const NotFound = () => {
 
       <Typography>Sorry, the page is not exist</Typography>
       <br />
-      <Button onClick={() => Navigate('/')}>home page</Button>
+      <Button onClick={() => navigate('/')}>home page</Button>
 
     </Paper>
   )

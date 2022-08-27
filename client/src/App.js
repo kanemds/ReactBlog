@@ -8,6 +8,8 @@ import './index.css';
 import NotFound from "./component/NotFound";
 import { DataProvider } from './context/DataContext'
 import Edit from "./component/Edit";
+import Register from "./component/Register";
+import Login from "./component/Login";
 
 
 
@@ -19,6 +21,8 @@ function App() {
           <Navbar />
           <div className='content'>
             <Routes>
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
               <Route path="/create" element={<Create />} />
               <Route path="/edit/:id" element={<Edit />} />
               <Route path="/blogs/:id" element={<BlogDetails />} />

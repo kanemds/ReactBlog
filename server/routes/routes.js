@@ -6,8 +6,8 @@ const blog = require('./blog')
 const user = require('./user')
 
 
-router.use('/user', user)
-router.use('/blog', blog)
+router.use('/users', user)
+router.use('/blogs', blog)
 
 
 module.exports = router

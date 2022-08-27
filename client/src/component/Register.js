@@ -9,8 +9,6 @@ const Register = () => {
       <Paper sx={{ p: 3 }}>
         <Typography variant="h4">Register</Typography>
         <FormControl fullWidth>
-          <TextField required sx={{ m: 1 }} id="standard-basic" label="First Name" variant="outlined" />
-          <TextField required sx={{ m: 1 }} id="standard-basic" label="Last Name" variant="outlined" />
           <TextField required sx={{ m: 1 }} id="standard-basic" label="User Name" variant="outlined" />
           <TextField required sx={{ m: 1 }} id="standard-basic" label="Email" variant="outlined" />
           <TextField required sx={{ m: 1 }} id="standard-basic" label="Password" variant="outlined" />

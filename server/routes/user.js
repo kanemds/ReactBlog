@@ -30,17 +30,22 @@ router.get('/:id', getUser, (req, res) => {
   res.send(res.user)
 })
 
-router.post('/', async (req, res) => {
+router.post('/', async (req, res, next) => {
+
   const user = new User({
     userName: req.body.userName,
     password: req.body.password,
     email: req.body.email
   })
+
   try {
+
     const newUser = await user.save()
     res.status(201).json(newUser)
   } catch (error) {
-    res.status(400).json(error.message)
+    const err = new Error("Internal server error.");
+    err.status = 500;
+    next(err);
   }
 })
 

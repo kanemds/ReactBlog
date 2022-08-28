@@ -3,6 +3,7 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import React, { useRef, useState, useEffect } from 'react'
 import InputAdornment from '@mui/material/InputAdornment';
 import { useNavigate } from 'react-router-dom'
+import CreatedUser from './CreatedUser';
 
 // user name can be lower or capital, numbers also - and _, length must 3 < name < 23
 const user_regex = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/
@@ -18,15 +19,6 @@ const pwd_regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{8,16}$/
 
 const Register = () => {
 
-  // const userRef = useRef()
-  // const errRef = useRef()
-
-  // const [errMsg, setErrMsg] = useState('')
-  // const [success, setSuccess] = useState(false)
-
-  // useEffect(() => {
-  //   setErrMsg('')
-  // }, [user, pwd, matchPwd])
 
   const navigate = useNavigate()
 
@@ -50,48 +42,81 @@ const Register = () => {
 
   useEffect(() => {
     const result = user_regex.test(user)
-    console.log(result)
-    console.log(user)
     setValidName(result)
+    setShow(false)
   }, [user])
 
   useEffect(() => {
     const result = email_regex.test(email)
-    console.log(result)
-    console.log(email)
     setValidEmail(result)
+    setShow(false)
   }, [email])
 
   useEffect(() => {
     const result = pwd_regex.test(pwd)
-    console.log(result)
-    console.log(pwd)
     setValidPwd(result)
     const match = pwd === matchPwd && matchPwd.length > 7
     setValidMatch(match)
+    setShow(false)
   }, [pwd, matchPwd])
 
 
 
   const handleSubmit = async () => {
-    const newUser = await fetch('http://localhost:3001/users', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        userName: user,
-        email: email,
-        password: pwd
+    try {
+      const newUser = await fetch('http://localhost:3001/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: true,
+        body: JSON.stringify({
+          userName: user,
+          email: email,
+          password: pwd
+        })
       })
-    })
-    const content = await newUser.json()
-    console.log(content)
+      if (newUser.status < 400) {
+        const content = await newUser.json()
+        console.log({ newUser, content })
+        setSuccess(true)
+      } else {
+        setErrMsg('Cannot create user with same name')
+        setSuccess(false)
+        setShow(true)
+      }
+    } catch (error) {
+      if (!error?.response) {
+        setErrMsg('No Server Response')
+        setShow(true)
+      } else if (error.response?.status === 409) {
+        setErrMsg('user name has taken')
+        setShow(true)
+      } else {
+        setErrMsg('Registration Failed')
+        setShow(true)
+      }
+    }
+
   }
+
+  // if show true meg
+  //  show false no msg 
+  const [show, setShow] = useState(false)
+  const [errMsg, setErrMsg] = useState('')
+  const [success, setSuccess] = useState(false)
 
   return (
     <>
-      <Paper sx={{ p: 3 }}>
-        <Typography variant="h4">Register</Typography>
-        <FormControl>
+      {success ?
+        <CreatedUser />
+        :
+        <Paper sx={{ p: 3 }}>
+          {!show ? "" :
+            <Typography sx={{ backgroundColor: 'pink', p: 1 }}>
+              {errMsg}
+            </Typography>
+          }
+          <Typography variant="h4">Register</Typography>
+
           <TextField fullWidth autoComplete='off' required sx={{ m: 1 }} id="standard-basic" label="User Name" placeholder="Require minimun of 4 charaters" variant="outlined"
             onChange={(e) => setUser(e.target.value)}
             InputProps={{
@@ -133,26 +158,15 @@ const Register = () => {
               ),
             }}
           />
-        </FormControl>
-        <Button
-          onClick={() => navigate('/')}
-        >Cancel</Button>
-        <Button onClick={handleSubmit}
-          disabled={!validName || !validEmail || !validPwd || !validMatch ? true : false}
 
-        >Register</Button>
-
-
-      </Paper>
-      {user}
-      <br />
-      {email}
-      <br />
-      {pwd}
-      <br />
-      {matchPwd}
-      <br />
-
+          <Button
+            onClick={() => navigate('/')}
+          >Cancel</Button>
+          <Button onClick={handleSubmit}
+            disabled={!validName || !validEmail || !validPwd || !validMatch ? true : false}
+          >Register</Button>
+        </Paper>
+      }
     </>
   )
 }

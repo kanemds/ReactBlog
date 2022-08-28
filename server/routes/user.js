@@ -32,8 +32,6 @@ router.get('/:id', getUser, (req, res) => {
 
 router.post('/', async (req, res) => {
   const user = new User({
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
     userName: req.body.userName,
     password: req.body.password,
     email: req.body.email

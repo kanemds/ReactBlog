@@ -76,10 +76,11 @@ const Register = () => {
       })
       if (newUser.status < 400) {
         const content = await newUser.json()
-        console.log({ newUser, content })
+        console.log(newUser)
+        console.log(content)
         setSuccess(true)
       } else {
-        setErrMsg('Cannot create user with same name')
+        setErrMsg('Cannot create user or email')
         setSuccess(false)
         setShow(true)
       }

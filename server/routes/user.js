@@ -2,6 +2,7 @@ const express = require('express')
 const blog = require('../models/blog')
 const router = express.Router()
 const User = require('../models/user')
+const bcrypt = require('bcrypt')
 
 async function getUser(req, res, next) {
   let user
@@ -30,16 +31,36 @@ router.get('/:id', getUser, (req, res) => {
   res.send(res.user)
 })
 
+router.post('/login', async (req, res) => {
+  const userName = req.body.userName
+  const pwd = req.body.password
+  let loginUser = await User.findOne({ userName })
+  if (!loginUser) {
+    return res.sendStatus(401) // unauthorized
+  }
+  const match = await bcrypt.compare(pwd, loginUser.password)
+  if (match) {
+    // JWTs
+    res.json({ 'success': `User ${userName} is logged in.` })
+  } else {
+    res.sendStatus(401)
+  }
+
+})
+
+
 router.post('/', async (req, res, next) => {
+
+  const hashedPwd = await bcrypt.hash(req.body.password, 10)
 
   const user = new User({
     userName: req.body.userName,
-    password: req.body.password,
+    password: hashedPwd,
+    // password: req.body.password,
     email: req.body.email
   })
 
   try {
-
     const newUser = await user.save()
     res.status(201).json(newUser)
   } catch (error) {
@@ -48,6 +69,7 @@ router.post('/', async (req, res, next) => {
     next(err);
   }
 })
+
 
 
 router.post('/:id', (req, res) => {
@@ -90,5 +112,9 @@ router.delete('/:id', async (req, res) => {
     return res.status(500).json(error.message)
   }
 })
+
+
+
+
 
 module.exports = router;

@@ -7,8 +7,16 @@ const User = require('../models/user')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
-const fsPromises = require('fs').promises
-const path = require('path')
+
+
+const maxAge = 3 * 24 * 60 * 60
+
+const createToken = (id) => {
+  return jwt.sign({ id }, process.env.ACCESS_TOKEN_SECRET, {
+    expiresIn: maxAge
+  })
+}
+
 
 
 async function getUser(req, res, next) {
@@ -24,6 +32,12 @@ async function getUser(req, res, next) {
   res.user = user
   next()
 }
+
+router.get('/logout', (req, res) => {
+  res.cookie('jwt', '', { maxAge: 1 })
+  res.redirect('/')
+})
+
 
 router.get('/', async (req, res) => {
   try {
@@ -45,25 +59,18 @@ router.post('/login', async (req, res) => {
   if (!loginUser) {
     return res.sendStatus(401) // unauthorized
   }
-  const match = await bcrypt.compare(pwd, loginUser.password)
-  if (match) {
+  const user = await bcrypt.compare(pwd, loginUser.password)
+
+  if (user) {
     // JWTs
-    const accessToken = jwt.sign(
-      { 'username': loginUser.userName },
-      process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: '30s' }
-    )
-    const refreshToken = jwt.sign(
-      { 'username': loginUser.userName },
-      process.env.REFRESH_TOKEN_SECRET,
-      { expiresIn: '1d' }
-    )
-    const otherUsers =
-      res.json({ 'success': `User ${userName} is logged in.` })
+    const token = createToken(user._id)
+    console.log(token)
+    console.log(user)
+    res.cookie('jwt', token)
+    res.status(200).json({ user: user._id })
   } else {
     res.sendStatus(401)
   }
-
 })
 
 
@@ -130,7 +137,6 @@ router.delete('/:id', async (req, res) => {
     return res.status(500).json(error.message)
   }
 })
-
 
 
 

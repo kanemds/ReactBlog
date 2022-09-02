@@ -10,7 +10,6 @@ const Login = () => {
   const { setAuth } = useContext(AuthContext)
 
 
-
   const [user, setUser] = useState('')
   const [pwd, setPwd] = useState('')
   const [errMsg, setErrMsg] = useState('')
@@ -36,21 +35,30 @@ const Login = () => {
           userName: user,
           password: pwd
         })
+
       })
+
       if (loginUser.status < 400) {
         const content = await loginUser.json()
-        // console.log(loginUser)
+        console.log(loginUser)
         console.log(content)
+        setAuth({ user, pwd })
+        setPwd('')
+        setUser('')
         setShow(false)
+        navigate('/')
       }
     } catch (error) {
       if (!error?.response) {
+        setShow(true)
         setErrMsg('No Server Response')
-        setShow(true)
+
       } else if (error.response?.status === 400) {
-        setErrMsg('User and Email are required')
         setShow(true)
+        setErrMsg('User and Email are required')
+
       } else if (error.response?.status === 401) {
+        setShow(true)
         setErrMsg('Unauthorized')
       } else {
         setErrMsg('Login Failed')

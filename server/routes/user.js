@@ -2,7 +2,14 @@ const express = require('express')
 const blog = require('../models/blog')
 const router = express.Router()
 const User = require('../models/user')
+
+// making jwt
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+require('dotenv').config()
+const fsPromises = require('fs').promises
+const path = require('path')
+
 
 async function getUser(req, res, next) {
   let user
@@ -41,7 +48,18 @@ router.post('/login', async (req, res) => {
   const match = await bcrypt.compare(pwd, loginUser.password)
   if (match) {
     // JWTs
-    res.json({ 'success': `User ${userName} is logged in.` })
+    const accessToken = jwt.sign(
+      { 'username': loginUser.userName },
+      process.env.ACCESS_TOKEN_SECRET,
+      { expiresIn: '30s' }
+    )
+    const refreshToken = jwt.sign(
+      { 'username': loginUser.userName },
+      process.env.REFRESH_TOKEN_SECRET,
+      { expiresIn: '1d' }
+    )
+    const otherUsers =
+      res.json({ 'success': `User ${userName} is logged in.` })
   } else {
     res.sendStatus(401)
   }
